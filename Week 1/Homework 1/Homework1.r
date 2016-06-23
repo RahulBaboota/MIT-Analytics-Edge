@@ -47,6 +47,18 @@ summary(TempRegModel3)
 
 ## --------------------------------------------------------------------------------------------------------------------------------
 
+## Problem 5
+
+#Now we have created a Linear Regression Model which performs sufficiently good on our training data . However , the performance of the model will be judged when we apply the model on unseen data i.e testing data . For this , we use the Predict function and to check the measure of the performance of the model , we evaluate the value of R^2 . 
+Predictions = predict(TempRegModel3 , newdata = climate_change_testing)
+Predictions
+
+SSE = sum((climate_change_testing$Temp - Predictions)^2)
+SST = sum((mean(climate_change_training$Temp) - climate_change_testing$Temp)^2)
+R^2 = 1 - SSE/SST
+R^2
+
+## ---------------------------------------------------------------------------------------------------------------------------------
 
 
 

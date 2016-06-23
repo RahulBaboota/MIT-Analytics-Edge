@@ -12,12 +12,17 @@ climate_change_training = subset( climate_change , Year <= 2006)
 climate_change_testing  = subset( climate_change , Year > 2006 )
 
 #Firstly , we create a linear regression model considering all independent variables excluding Year and Month 
-TempRegModel1 = lm(Temp ~ MEI + CO2 + CH4 + N20 + CFC.11 + CFC.12 + TSI + Aerosols , data = climate_change_training)
+TempRegModel1 = lm( Temp ~ MEI + CO2 + CH4 + N20 + CFC.11 + CFC.12 + TSI + Aerosols , data = climate_change_training)
 summary(TempRegModel1)
 
 #Now to check the correlation among different independent variables , we can use the cor function.
 #The study of correlation will help us to explain some of the anamolous behaviours in our predictions
 cor(climate_change_training)
+
+#Since we saw that our TempRegModel1 was producing some weird predictions such as increasing concentration of greenhouse gases were leading to a drop in temperature , we try to reduce some variables and make our model better . 
+TempRegModel2 = lm( Temp ~ MEI + TSI + N2O + Aerosols , data = climate_change_training)
+summary(TempRegModel2)
+
 
 
 

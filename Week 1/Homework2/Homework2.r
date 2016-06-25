@@ -95,4 +95,24 @@ RMSE = sqrt(SSE/nrow(pisaTrain))
 
 ## -------------------------------------------------------------------------------------------------------------------------------
 
+## Problem 4
 
+## Up until now , we created a linear regression model and we trained it on some data which we call as the training data . However, this model will only be of use to us if it can predict values on unseen data or testing data . Therefore , we use this model to predict the reading scores on the testing data .
+
+predTest = predict( lmScore , newdata = pisaTest )
+summary(predTest)
+predTest
+
+## Computing the values of SSE and RMSE for the test set .
+
+SSE = sum(( pisaTest$readingScore - predTest )^2)
+RMSE = sqrt(SSE/nrow(pisaTest))
+
+## Computing baseline predictions and SST .
+
+baseline_prediction = mean(pisaTrain$readingScore)
+SST = sum(( baseline_prediction - pisaTest$readingScore )^2)
+
+## Computing the value of R^2
+
+R2 = 1 - SSE/SST

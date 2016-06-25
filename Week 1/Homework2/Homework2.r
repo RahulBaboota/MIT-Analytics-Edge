@@ -70,5 +70,29 @@ pisaTest = na.omit(pisaTest)
 
 ## To include unordered variables in our linear regression model , we select one of the unordered levels as a reference level and then we assign binary values to each of the different unordered levels . The reference level is mostly that level which is the most frequently occuring . So , in our example , in the independent variable , 'raceeth' , we choose "White" as our reference level and all other levels are then assigned binary values.
 
+## ------------------------------------------------------------------------------------------------------------------------------
+
+## Problem 3
+
+## The "raceeth" variable takes on text values and therefore , it was loaded in as a factor variable in our dataframe . The problem which arises from this is that , R reads in the different levels then alphabetically and selects the reference variable also alphabetically . Therefore , we have to set the reference variable as "White" on our own.
+
+pisaTrain$raceeth = relevel( pisaTrain$raceeth , "White" )
+pisaTest$raceeth = relevel( pisaTrain$raceeth , "White" )
+
+
+## After doing this , we create a linear regression model wherein we factor for all of the variables. In this case , we will use the shorthand notation to select all the variables in our model .
+
+lmScore = lm( readingScore ~ . , data = pisaTrain )
+summary(lmScore)
+
+## Computing the value of SSE and RMSE
+
+SSE = sum((lmScore$residuals)^2)
+RMSE = sqrt(SSE/nrow(pisaTrain))
+
+## We can clearly see that there have been different coefficients generated for each level in our raceeth variable . The interpretaion of these coefficients are that this is the predicted difference in their reading score as compared to the reading score of the reference level , in this case , the "White" , assuming all other factors to be the same .
+
+
+## -------------------------------------------------------------------------------------------------------------------------------
 
 

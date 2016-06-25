@@ -62,3 +62,13 @@ summary(pisaTrain)
 pisaTrain = na.omit(pisaTrain)
 pisaTest = na.omit(pisaTest)
 
+## ------------------------------------------------------------------------------------------------------------------------------
+
+## Problem 2
+
+## In 2.1 , we have to find the various variables which are factor variables with some kind of order or not . For this , there is no need to perform any kind of function in R , but just by looking at the dataframe , we can tell that "race" is an unordered factor variable as it has many levels such as "Hispanic , White, Black " etc. , however they dont have any order . Whereas on the other side, grade is an ordered factor variable as it also has many levels such as 8,9,10, .. wherein they are of a particular order .
+
+## To include unordered variables in our linear regression model , we select one of the unordered levels as a reference level and then we assign binary values to each of the different unordered levels . The reference level is mostly that level which is the most frequently occuring . So , in our example , in the independent variable , 'raceeth' , we choose "White" as our reference level and all other levels are then assigned binary values.
+
+
+

@@ -42,4 +42,24 @@ histogram_ILI = hist( fluTrain$ILI )
 log_ILI = log( fluTrain$ILI )
 plot( fluTrain$Query , log_ILI )
 
+## -----------------------------------------------------------------------------------------------------------------------------
+
+## Problem 2
+
+## Now we create a linear regression model in which we only consider one independent variable "Queries" and the dependent variable 
+## is log(ILI) as we saw from the above plot that there was a linear relationship between the two variables .
+
+FluTrend1 = lm( log_ILI ~ Query , data= fluTrain )
+summary(FluTrend1)
+
+## For a single variable regression model , there is a direct relationship between the R^2 value and the correlation value between 
+## the independent and dependent variable . However , there is no function in R which will help us to predict what that relationship 
+## is. Therefore , we have to determine that independently .
+
+correlation = cor( log(fluTrain$ILI) , fluTrain$Query )
+
+## -----------------------------------------------------------------------------------------------------------------------------
+
+
+
 

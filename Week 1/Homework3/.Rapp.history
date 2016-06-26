@@ -1,0 +1,29 @@
+sd(c(5,8,12))
+which.min(c(4,1,6))
+8*6
+2^10
+sd(c(5,8,12))
+which.min(c(4,1,6))
+load(".RData")
+ls()
+ls
+ls()
+moneyball
+load(".RData")
+fluTrain =  read.csv('FluTrain.csv')
+summary(fluTrain.csv)
+summary(fluTrain)
+str(fluTrain)
+max(fluTrain$ILI)
+max(fluTrain$Queries)
+table(fluTrain)
+tapply (fluTrain$Week , fluTrain$ILI , max)
+tapply (fluTrain$Week , fluTrain$ILI , min)
+tapply (fluTrain$Week , fluTrain$ILI , sum)
+week_ILI_max =  subset( fluTrain , ILI == max(ILI))
+summary(week_ILI_max)
+str(week_ILI_max)
+week_ILI_max
+which.max(fluTrain$ILI)
+fluTrain$Week[303]
+hist(fluTrain$ILI)

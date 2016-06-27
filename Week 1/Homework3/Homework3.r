@@ -118,5 +118,27 @@ summary(PredTest2)
 
 ## -----------------------------------------------------------------------------------------------------------------------------
 
+## Problem 5
 
+## So far we have only added the ILILag2 variable to our training set . In order to make predictions with our FluTrend2 model , we
+## need to add this variable to our testing set as well .
+
+ILILag2 = lag ( zoo( fluTest$ILI) ,-2, na.pad=TRUE)
+fluTest$ILILag2 = coredata(ILILag2)
+
+## In our training and testing sets , the data is splitted sequentially . Our testing set contains data from the year 2004-2011 and 
+## training set contains data from the year 2012 . Therefore , it is in continuation . Therefore , we can predict the ILILag2 
+## values for the first two values of the testing set from the ILILag2 values of the training set .
+
+length_of_training_set = nrow(fluTrain)
+
+fluTest$ILILag2[1]=fluTrain$ILILag2[length_of_training_set-1]
+fluTest$ILILag2[2]=fluTrain$ILILag2[length_of_training_set]
+
+## Root Mean Squared Value for the FluTrend2 Model 
+
+SSE = sum((fluTest$ILILag2 - PredTest2)^2)
+RMSE = sqrt(SSE/nrow(fluTest))
+
+## -----------------------------------------------------------------------------------------------------------------------------
 

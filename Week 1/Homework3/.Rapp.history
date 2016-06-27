@@ -27,3 +27,15 @@ week_ILI_max
 which.max(fluTrain$ILI)
 fluTrain$Week[303]
 hist(fluTrain$ILI)
+log_ILI_values = log(fluTrain$ILI)
+log_ILI_values
+plot(log_ILI_values,fluTrain$Queries)
+plot(log_ILI_values,fluTrain$Queries)
+FluTrend1 = lm( log_ILI_values ~ Queries , data = fluTrain)
+summary(FluTrend1)
+cor(FluTrend1)
+cor( log(fluTrain$ILI) , fluTrain$Queries )
+correlation = cor( log(fluTrain$ILI) , fluTrain$Queries )
+hit2 = log(1/correlation)
+hit2
+correlation^2

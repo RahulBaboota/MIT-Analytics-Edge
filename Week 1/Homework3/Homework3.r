@@ -3,6 +3,7 @@
 ###									Setting up the file and variable names
 
 fluTrain = read.csv('FluTrain.csv')
+fluTest = read.csv('fluTest.csv')
 
 ## -----------------------------------------------------------------------------------------------------------------------------
 
@@ -60,6 +61,29 @@ correlation = cor( log(fluTrain$ILI) , fluTrain$Query )
 
 ## -----------------------------------------------------------------------------------------------------------------------------
 
+## Problem 3
 
+## Now , we will predict values on our test data using the model we have created above . However ,  one important thing to note is
+## that in the model created above , we are taking the log of our dependent variable , so the predictions will also be values of 
+## log of our dependent variable . For this , we have to exponentiate our variable. 
+
+PredTest1 = exp( predict( FluTrend1 , newdata = fluTest ))
+
+## Now , we have to find the predictions for Week of March 11, 2012 . For this , we find out the row number for this week and
+## then we find the corresponding value of the prediction using this obtained row number . 
+
+row_number = which(fluTest$Week == "2012-03-11 - 2012-03-17")
+PredTest1[row_number]
+
+## We have to calcuate the relative error for our model for the above obtained week when we run it on test data .
+
+relative_error = (fluTest$ILI[row_number] - PredTest1[row_number] ) / fluTest$ILI[row_number]
+
+## Now , we need to find the Root Mean Squared Value .
+
+SSE = sum((fluTest$ILI - PredTest1)^2)
+RMSE = sqrt(SSE/nrow(fluTest))
+
+## -----------------------------------------------------------------------------------------------------------------------------
 
 

@@ -113,9 +113,10 @@ plot( log(fluTrain$ILILag2) , log(fluTrain$ILI) )
 
 ## Creating another linear regression model
 
-PredTest2 = lm( ILI ~ Queries + ILILag2 , data = fluTrain)
+FluTrend2 = lm( ILI ~ Queries + ILILag2 , data = fluTrain)
 summary(PredTest2)
 
 ## -----------------------------------------------------------------------------------------------------------------------------
+
 
 

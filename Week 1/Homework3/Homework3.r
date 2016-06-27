@@ -86,4 +86,36 @@ RMSE = sqrt(SSE/nrow(fluTest))
 
 ## -----------------------------------------------------------------------------------------------------------------------------
 
+## Problem 4
+
+## The observations we have in this dataset are consecutive weekly measurements of the dependent and independent variables .
+## A dataset with such kind of observations is known as a "Time Series" dataset . We can improve our statistical model by 
+## predicting the value of the current dependent variable using previous values of the dependent variables .
+
+## In this , we will try predicting the values of ILI by using the approach defined above . We will make our model in such a 
+## way that the decision maker has the record of the previous two weeks to predict the current value of ILI . To do this , we 
+## will have to install a R package named as "zoo" . 
+
+install.packages('zoo')
+library(zoo)
+
+ILILag2 = lag( zoo( fluTrain$ILI) ,-2, na.pad=TRUE)
+fluTrain$ILILag2 = coredata(ILILag2)
+
+## In line 102 , we are creating a variable ILILag2 wherein we store the predicted values for the current dependent variable which
+## in this case is ILI . The argument -2 means to return 2 observations prior to the current observation . The argument 
+## "na.pad = TRUE" means that we are setting the values of ILI for the first 2 weeks wherein we dont have any kind of prior data
+## to predict these values .
+
+## Plotting a curve between log(ILILag2) and log(ILI)
+
+plot( log(fluTrain$ILILag2) , log(fluTrain$ILI) )
+
+## Creating another linear regression model
+
+PredTest2 = lm( ILI ~ Queries + ILILag2 , data = fluTrain)
+summary(PredTest2)
+
+## -----------------------------------------------------------------------------------------------------------------------------
+
 

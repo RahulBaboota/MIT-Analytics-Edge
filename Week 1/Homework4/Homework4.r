@@ -57,5 +57,39 @@ plot ( statedata$Income , statedata$Life.Exp )
 
 ## -----------------------------------------------------------------------------------------------------------------------------
 
+## Problem 3
 
+## We know that it is not a wise decision to include all the independent variables in our model as it causes overfitting . Therefore 
+## we remove the models that are not significant by looking at their t-value and their significant stars . By doing so , we
+## obtain a model which has the following four independent variables .
 
+LifeExpectModel2 = lm ( LifeExp ~ Population + Murder + HS.Grad + Frost, data = statedata )
+summary(LifeExpectModel2)
+
+## By looking at the summary , we get that the R^2 value almost remains the same , so this ensures that our model is a good one .
+## It is to be noted that when we remove independent variables from our model , the value of our multiple R^2 decreases only .
+## However , if the decrease is negligible or it remains the same , then it is a good tradeoff as we are not decreasing the 
+## accuracy by a big margin while making the model much more simpler . On the other hand , we can expect the adjusted R^2 to 
+## increase as it takes into account the number of variables used in our model as compared to the total number of variables 
+## present .
+
+## Now , we will make predictions using our model on the training set itself .
+
+Predictions = predict( LifeExpectModel2 , data = statedata )
+Predictions
+
+## Next , we will check the correctness of our model by looking at what predictions our model made and what the actual values were .
+
+min_life_exp_predict = sort( Predictions )
+min_life_exp_actual = statedata$state.name[which.min(statedata$Life.Exp)]
+
+max_life_exp_predict = sort( Predictions )
+max_life_exp_actual = statedata$state.name[which.max(statedata$Life.Exp)]
+
+## Next , we want to check that the value of the residuals ( errors ) i.e. the difference in the actual values and the predicted 
+## values for each of the state . More importantly , we want the states for which the errors are maximum and minimum .
+
+state_errors_min = statedata$state.name[which.min(LifeExpectModel2$residuals)]
+state_errors_max = statedata$state.name[which.max(LifeExpectModel2$residuals)]
+
+## -----------------------------------------------------------------------------------------------------------------------------

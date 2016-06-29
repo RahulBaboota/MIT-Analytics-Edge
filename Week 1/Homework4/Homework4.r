@@ -43,5 +43,19 @@ max_murder_state
 
 ## -----------------------------------------------------------------------------------------------------------------------------
 
+## Problem 2
+
+## Now , lets build a linear regression model in which our dependent variable is "Life Expectancy" and other plausible variables
+## are taken as the dependent variables .
+
+LifeExpectModel = lm( LifeExp ~ Population + Income + Illiteracy + Murder + HS.Grad + Frost + Area, data = statedata )
+summary(LifeExpectModel)
+
+## After that , we will construct a plot between the Income and the Life Expectancy to see what kind of relation they have .
+
+plot ( statedata$Income , statedata$Life.Exp )
+
+## -----------------------------------------------------------------------------------------------------------------------------
+
 
 

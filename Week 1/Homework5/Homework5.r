@@ -16,3 +16,12 @@ no_of_observations_train = nrow(testData)
 str(testData)
 
 ## -----------------------------------------------------------------------------------------------------------------------------
+
+## Problem 2
+
+## Herein , we will build a linear regression model using four of our independent variables .
+
+salesModel1 = lm( ElantraSales ~ Queries + CPI_energy + CPI_all + Unemployment , data = trainData )
+summary(salesModel1)
+
+## -----------------------------------------------------------------------------------------------------------------------------

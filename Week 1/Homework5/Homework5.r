@@ -25,3 +25,20 @@ salesModel1 = lm( ElantraSales ~ Queries + CPI_energy + CPI_all + Unemployment ,
 summary(salesModel1)
 
 ## -----------------------------------------------------------------------------------------------------------------------------
+
+## Problem 3
+
+## We observed above that the R^2 value of our model was not very great . While modeling sales and demand models , it is very 
+## important to take into account the seasonality as it might be the case that the sale of a product is quite high during a 
+## particular time in the year and might be quite low during another time of the year . Therefore , to make our model better 
+## we will also include "Month" as an independent variable .
+
+salesModel2 = lm( ElantraSales ~ Queries + CPI_energy + CPI_all + Unemployment + Month , data = trainData )
+summary(salesModel2)
+
+## When we look at the summary of the second model , we notice one pecularity in the coefficient of "Month". In our dataframe
+## the month is recorded as a numeric value and thus from our observations , we see that for every month we progress into the
+## year , our sales should go up . However , we know that this is not true . Therefore , the correct method of including 
+## month in our model would be to add it as a factor variable . 
+
+## -----------------------------------------------------------------------------------------------------------------------------

@@ -59,3 +59,14 @@ summary(salesModel3)
 
 ## -----------------------------------------------------------------------------------------------------------------------------
 
+## Problem 5
+
+## We can see from the summary of the above model that the sign of the coefficient of queries has changed . Also , the coefficient
+## of CPI_energy is positive i.e. as the cost of energy increases , the sales of elantra also increases . However, by intuition
+## only , we can judge that this is incorrect because if the price of energy increases , people will have less money and thus
+## the sales should go down . Thus , we can safely say that these peculiar results are due to multicollinearty.
+
+cor(trainData[c("Unemployment","Month","Queries","CPI_energy","CPI_all")])
+
+## -----------------------------------------------------------------------------------------------------------------------------
+

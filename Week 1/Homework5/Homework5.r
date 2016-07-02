@@ -70,3 +70,47 @@ cor(trainData[c("Unemployment","Month","Queries","CPI_energy","CPI_all")])
 
 ## -----------------------------------------------------------------------------------------------------------------------------
 
+## Now , we will finally create the best suiting model for our problem which is devoid of any insignificant variables .
+
+salesModel4 = lm( ElantraSales ~ CPI_energy + CPI_all + Unemployment + MonthFactor , data = trainData )
+summary(salesModel4)
+
+## Now , we will make predictions from the above created model on our testData. Then , we will calculate the sum of squared errors
+## for our test set predictions .
+
+predictTest = predict( salesModel4 , newdata = testData )
+
+SSE = sum(( testData$ElantraSales - predictTest ) ^2 ) 
+SSE
+
+## After that , we will calculate what the baseline predictions would have predicted .
+
+baseline_predictions = mean( trainData$ElantraSales )
+baseline_predictions
+
+## Now , we will calculate the value of R^2 for our test set predictions .
+
+SST = sum(( baseline_predictions - testData$ElantraSales ) ^2 )
+SST
+
+R^2 = 1 -SSE/SST
+R^2
+
+## We can then find out that which prediction was the least accurate or we can check for the maximum absolute error made when
+## predicting .
+
+max_error = max(abs(PredictTest - ElantraTest$ElantraSales))
+max_error
+
+## Then , we can find out for what year and month were these predictions made 
+
+max_error_row_no = which.max(abs(PredictTest - ElantraTest$ElantraSales))
+
+max_error_month = testData$Month[max_error_row_no]
+max_error_month
+
+max_error_year = testData$Year[max_error_row_no]
+max_error_year
+
+
+## -----------------------------------------------------------------------------------------------------------------------------

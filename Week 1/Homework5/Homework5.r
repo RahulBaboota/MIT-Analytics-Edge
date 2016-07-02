@@ -42,3 +42,20 @@ summary(salesModel2)
 ## month in our model would be to add it as a factor variable . 
 
 ## -----------------------------------------------------------------------------------------------------------------------------
+
+## Problem 4
+
+## We discussed above that we need to include month as a factor variable in our regression model . For this , we create a new 
+## variable monthfactor in which we will store values of the month variable by treating it as a factor variable . To do this ,
+## we will use R's inbuilt method as.factor() .
+
+testData$MonthFactor = as.factor( testData$Month )
+trainData$MonthFactor = as.factor( trainData$Month )
+
+## We then create another linear regression model wherein we include month as a factor variable and not as a numneric variable.
+
+salesModel3 = lm( ElantraSales ~ Queries + CPI_energy + CPI_all + Unemployment + MonthFactor , data = trainData )
+summary(salesModel3)
+
+## -----------------------------------------------------------------------------------------------------------------------------
+

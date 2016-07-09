@@ -40,7 +40,40 @@ max_tempo_song = songs$songtitle[tempo_max_row]
 
 ## -----------------------------------------------------------------------------------------------------------------------------
 
+## Problem 2
+
+## Now , we split our dataset into training and testing dataset . 
+
+SongsTrain = subset( songs , year <= 2009 )
+SongsTest = subset( songs , year == 2010 )
+
+str(SongsTrain)
+str(SongsTest)
+
+## In this problem , the dependent variable is "Top10" which basically tells us wether a given song entered the top 10 chart
+## list or not . Since the outcome of this variable is a binary value , we will use logistic regression .
+
+## To create our very first model , we will only include those independent variables which have numerical values . Therefore ,
+## we first create a vector in which we put all the variables which are not required and then create a model .
+
+nonvars = c("year", "songtitle", "artistname", "songID", "artistID")
+
+SongsTrain = SongsTrain[ , !(names(SongsTrain) %in% nonvars) ]
+SongsTest = SongsTest[ , !(names(SongsTest) %in% nonvars) ]
+
+Model1 = glm( Top10 ~ . , data = Songs , family = binomial )
+
+## If we look at the summary of our model , we can see that the confidence variables are very significant in our model .
+## This means that a higher value of confidence suggests a higher probability of the song being in Top 10 .
+
+## In our model , if the confidence values are low then that means that the song is complex . From this , we can make an
+## inference that the mainstream population is not in support of complex songs because of the low confidence level values.
+
+## Songs with heavy instrumentation are associated to a high value of loudness . Since loudness is a significant variable and
+## it's coefficient is positive , mainstream listeners prefer music with heavy instrumentation. 
+
+## Songs with heavy instrumentation are associated with a value of energy . Energy is also a significant variable , however , 
+## it's coefficient is negative . Therefore , we can't draw the same conclusion as above by just observing energy.
 
 
-
-
+## -----------------------------------------------------------------------------------------------------------------------------

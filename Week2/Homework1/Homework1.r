@@ -105,15 +105,27 @@ str(Model3)
 
 ## -----------------------------------------------------------------------------------------------------------------------------
 
+## Problem 4
 
+## Now , we will test our model on the testing set . After that , we check the accuracy of our model keeping a threshold value of
+## 0.45 .
 
+testPredict = predict( Model3 , newdata = SongsTest , type = 'response' )
+table(SongsTest$Top10, testPredict >= 0.45)
 
+## After that we check the accuracy of our baseline model to check how much of an improvement is the model we created .
 
+## In Logistic Regression , we create a baseline model by checking which of the two outcomes is more frequently occuring and
+## then assigning "True" value to that outcome . This means that suppose we have 101 outcomes out of which the outcome "1" is
+## occuring 51 times . This means that out of 101 observations , we only have 51 observations correct . 
 
+table(SongsTest$Top10)
 
+## The table we have created above for our model is basically a confusion matrix only . Now , to do some kind of analysis on the
+## accuracy of our model , we find out the specificity and sensitivity .
 
+## One major conclusion we can make from this model is that it is quite conservative . This means that even though the model
+## predicts less than half of the songs accurately which will make it to the top 10 , the predictions it does make on songs
+## which will be in the top 10 have a very high probability of being true .
 
-
-
-
-
+## -----------------------------------------------------------------------------------------------------------------------------

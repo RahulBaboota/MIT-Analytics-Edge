@@ -77,3 +77,43 @@ Model1 = glm( Top10 ~ . , data = Songs , family = binomial )
 
 
 ## -----------------------------------------------------------------------------------------------------------------------------
+
+## Problem 3
+
+## Now , we have to check for some multicolinearty problems . First , we evaluate the correlation between loudness and energy for 
+## the observations in the dataset .
+
+cor_loudness_energy = cor( SongsTrain$loudness , SongsTrain$energy )
+
+## This value comes out to be quite big meaning it has some kind of drastic effect on our model . Therefore , we now create 2 models
+## in which we will omit one of these two variables .
+
+## We can remove numeric independent variables by just putting a minus sign and then specifying what variable we are removing.
+
+Model2 = glm( Top10 ~ . - loudness , data = SongsTrain , family = binomial )
+Model3 = glm( Top10 ~ . - energy , data = SongsTrain , family = binomial )
+str(Model2)
+str(Model3)
+
+## Looking at the summary of Model2 , we see that although the variable energy is not significant , it's coefficient is still
+## positive . This means that songs with heavier instrumentation which is associated with a higher value of energy are more
+## likely to enter the Top 10 charts .
+
+## When we now look at the summary of Model3 , we see that the variable loudness is significant as well as it's coefficient is 
+## positive . This supports the results given by Model2 that songs with heavier instrumentation are more likely to enter the Top
+## 10 charts.
+
+## -----------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+

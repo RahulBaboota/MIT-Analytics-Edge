@@ -28,3 +28,13 @@ parole$state = as.factor(parole$state)
 parole$crime = as.factor(parole$crime)
 
 ## -----------------------------------------------------------------------------------------------------------------------------
+
+## Problem 3
+
+## Now , we want to split the data into training and testing sets . 
+
+set.seed(144)
+library(caTools)
+split = sample.split(parole$violator, SplitRatio = 0.7)
+train = subset(parole, split == TRUE)
+test = subset(parole, split == FALSE)

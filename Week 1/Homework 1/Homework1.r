@@ -3,7 +3,7 @@
 ###									Setting up the file and variable names
 
 # Firstly , we will read in the climate_change csv file
-climate_change = read.csv('climate_change')
+climate_change = read.csv('climate_change.csv')
 
 # Now , we will seperate this data into training and testing data
 

@@ -110,5 +110,15 @@ as.numeric(performance(pred , "auc")@y.values)
 
 ## -----------------------------------------------------------------------------------------------------------------------------
 
+## Problem 4
 
+## We saw from the previous problems that there are two main factors which determine the risk and the reward of the loans , mainly ,
+## "int.rate" and "not.fully.paid" . Now , let us assume that the lender loans a principle amount "c" to the borrower . The amount
+## is compounded annually so if the borrower returns the money along with interest , the total money received by the lender will
+## be c*exp(rt) where r is the rate of interest and t is the time period . In such a case , the profit netted by the lender will
+## be ( c*exp(rt) - c ) . However , if the borrower fails to pay back the loan , then the lender goes in a loss equal to c or 
+## he nets a profit of -c . Therefore , while lending the money , there is another factor which should be taken into consideration
+## which is the profit that the lender will earn . 
+
+## -----------------------------------------------------------------------------------------------------------------------------
 

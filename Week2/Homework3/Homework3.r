@@ -122,3 +122,14 @@ as.numeric(performance(pred , "auc")@y.values)
 
 ## -----------------------------------------------------------------------------------------------------------------------------
 
+## Problem 5
+
+## As we saw in Problem 4 that there is a need to add the profit in our dataset while building our model . Therefore , we 
+## incorporate a variable "profit" in our dataset which does exactly that . However , we will compute the profit values on a 
+## loan value equal to $1 which can be scaled for other numbers .
+
+Test$profit = exp(Test$int.rate*3) - 1
+Test$profit[Test$not.fully.paid == 1] = -1
+
+## -----------------------------------------------------------------------------------------------------------------------------
+

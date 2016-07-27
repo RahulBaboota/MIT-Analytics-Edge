@@ -133,3 +133,24 @@ Test$profit[Test$not.fully.paid == 1] = -1
 
 ## -----------------------------------------------------------------------------------------------------------------------------
 
+## Problem 6
+
+## Now , we know what factors are important to look while devicing an investment strategy with the maximum returns . It is quite 
+## clear that we would invest in those loans wherein the interest rate is high ( i.e high reward ) and the probabilty of the loan
+## not being paid back is low ( i.e low risk ) . Therefore , we device a strategy in which we would only invest in those loans
+## where the interest rate is at least 15% . To do this , we create a subset of our Test Data to include only those observations
+## where the interest rate is greater than or equal to 15% .
+
+highInterest = subset( Test , int.rate >= 0.15 )
+summary(highInterest)
+
+## Now that we have created a subset of the loans sorted according to interest rates , we will now further filter our datapool 
+## according to the risks of the loan being paid or not . To do this , we find out the 100 topmost loans which have the lowest
+## risk probabilities . To create this subset , we calculate the maximum risk probability we will include in our subset .
+
+cutoff = sort(highInterest$predicted.risk, decreasing=FALSE)[100]
+
+selectedLoans = subset( Test , predicted.risk <= cutoff )
+summary(selectedLoans)
+
+## -----------------------------------------------------------------------------------------------------------------------------

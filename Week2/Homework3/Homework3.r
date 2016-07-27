@@ -42,4 +42,38 @@ loans[vars.for.imputation] = imputed
 
 ## -----------------------------------------------------------------------------------------------------------------------------
 
+## Problem 2 
+
+## Now , we will split our dataset into training and testing data using R's package "caTools" . After that , we will create a 
+## logistic regression model in which we will train our model on the training data . To create our model , we will use all of 
+## the available independent variables .
+
+library(caTools)
+set.seed(144)
+spl = sample.split( loans , SplitRatio = 0.7 )
+Train = subset( loans , spl == TRUE )
+Test = subset( loans , spl == FALSE )
+Model1 = glm( not.fully.paid ~ . , data = Train , family = binomial ) 
+
+## Next , we test our predictions on the testing set and compare the accuracy of our created model with the baseline model .
+
+## To test for our model , we set the threshhold value at 0.5 
+
+Test$predicted.risk = predict( Model1 , newdata = Test , type = "response" )
+table( Test$not.fully.paid , Test$predicted.risk > 0.5 )
+
+## Our baseline model will predict the most frequent output for all of the observations which is "0" . Therefore , we can 
+## compute the accuracy of our baseline model too by looking at the confusion matrix .
+
+## Next , we compute the AUC of the model by using the ROCR package .
+
+library(ROCR)
+set.seed(144)
+Pred = prediction( Test$predicted.risk , Test$not.fully.paid )
+as.numeric(performance(pred, "auc")@y.values)
+
+## -----------------------------------------------------------------------------------------------------------------------------
+
+
+
 

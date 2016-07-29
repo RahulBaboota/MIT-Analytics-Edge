@@ -73,3 +73,17 @@ Model9 = glm( WorldSeries ~ RankSeason , data = Baseball , family = "binomial" )
 Model10 = glm( WorldSeries ~ RankPlayoffs , data = Baseball , family = "binomial" )
 
 ## -----------------------------------------------------------------------------------------------------------------------------
+
+## Problem 4
+
+## Now , we will build a final model in which we will include all of the variables which we found to be significant using our 
+## bivariate model analysis .
+
+ModelFinal = glm( WorldSeries ~ Year + RA + RankSeason + NumCompetitors , data = Baseball , family = "binomial" )
+summary(ModelFinal)
+
+## On looking at the summary of the model created above , we see that any of the variables listed wasn't a significant variable .
+## This generally happens due to correlation between the variables .
+
+
+## -----------------------------------------------------------------------------------------------------------------------------

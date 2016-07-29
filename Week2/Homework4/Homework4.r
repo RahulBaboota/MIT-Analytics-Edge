@@ -40,3 +40,36 @@ PlayoffTable = table(Baseball$Year)
 Baseball$NumCompetitors = PlayoffTable[as.character(Baseball$Year)]
 
 ## -----------------------------------------------------------------------------------------------------------------------------
+
+## Problem 3
+
+## If a team won the World Series , then it is denoted by a value 1 in the PlayoffRank . We create a variable which stores this 
+## result as a binary result , i.e , 1 if the team won and 0 if it didn't .
+
+baseball$WorldSeries = as.numeric(baseball$RankPlayoffs == 1)
+table(Baseball$WorldSeries)
+
+## When we are not sure which of the variables will be significant , what we do is that we build bivariate models which help us
+## to determine which of the variables are significant or not .
+
+Model1 = glm( WorldSeries ~ Year , data = Baseball , family = "binomial" )
+
+Model2 = glm( WorldSeries ~ RS , data = Baseball , family = "binomial" )
+
+Model3 = glm( WorldSeries ~ RA , data = Baseball , family = "binomial" )
+
+Model4 = glm( WorldSeries ~ W , data = Baseball , family = "binomial" )
+
+Model5 = glm( WorldSeries ~ OBP , data = Baseball , family = "binomial" )
+
+Model6 = glm( WorldSeries ~ SLG , data = Baseball , family = "binomial" )
+
+Model7 = glm( WorldSeries ~ BA , data = Baseball , family = "binomial" )
+
+Model8 = glm( WorldSeries ~ Playoffs , data = Baseball , family = "binomial" )
+
+Model9 = glm( WorldSeries ~ RankSeason , data = Baseball , family = "binomial" )
+
+Model10 = glm( WorldSeries ~ RankPlayoffs , data = Baseball , family = "binomial" )
+
+## -----------------------------------------------------------------------------------------------------------------------------

@@ -25,3 +25,18 @@ length(table(Baseball$Year))
 Baseball = subset( Baseball , Playoffs == 1 )
 
 ## -----------------------------------------------------------------------------------------------------------------------------
+
+## Problem 2
+
+## It is much harder to win the world series if there are more teams to compete with . Therefore , this should be an important 
+## factor while making our model .
+
+## We store this tabular information in a variable. 
+
+PlayoffTable = table(Baseball$Year)
+
+## We then add this newly created variable to our dataset .
+
+Baseball$NumCompetitors = PlayoffTable[as.character(Baseball$Year)]
+
+## -----------------------------------------------------------------------------------------------------------------------------

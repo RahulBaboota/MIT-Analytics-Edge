@@ -40,3 +40,22 @@ ROCRpred = prediction( LogisticPrediction1 , Test$over50k )
 as.numeric(performance(ROCRpred, "auc")@y.values)
 
 ## -----------------------------------------------------------------------------------------------------------------------------
+
+## Problem 2
+
+## Now after creating our Logistic Regression model which worked quite well , we will create a Classification Tree to get even 
+## better results .
+
+library(rpart)
+library(rpart.plot)
+CARTModel = rpart( over50k~ . , method = "class" , data = Train )
+prp(CARTModel)
+
+## After looking at the Tree , we see that there are 4 splits created in our Tree .
+
+## We now make predictions using the model we just created and compute it's accuracy .
+
+CARTPredictions = predict( CARTModel , newdata = Test , type = "class" )
+table( Test$over50k , CARTPredictions )
+
+## -----------------------------------------------------------------------------------------------------------------------------
